@@ -1,0 +1,211 @@
+<div class="container" style="background-color: black" *ngIf ="countrydata == undefined && countrynamedata == undefined && languagedetails == undefined && currencydetails == undefined">
+  <div class="row">
+      <div class=" col-sm-12 col-lg-4 col-md-4" >
+  
+      </div>
+
+    <div class=" col-sm-12 col-lg-4 col-md-4" >
+        <div style="color: white;" class="text-fluid">Search the name of country via Region</div>
+
+    </div>
+    <div class=" col-sm-12 col-lg-4 col-md-4" >
+  
+      </div>
+    
+  </div>
+
+</div>
+
+<div class="container" style="background-color: black" *ngIf = "countrydata != undefined">
+    <div class="row">
+  
+      <div class=" col-sm-12 col-lg-12 col-md-12" >
+          <h2 style="color: white">Countries Name </h2>
+  
+      </div>
+      
+    </div>
+  
+  </div>
+  <br>
+  <br>
+
+
+
+
+
+
+<div class="container" *ngIf = "countrydata === undefined" >
+  <div class="row">
+    <div class="col-sm-12 col-md-12 col-lg-4" *ngFor = "let regions  of Regional_zone ">
+
+        <div class="card" style="width: 100%; " >
+            <img class="card-img-top " src="assets/region.jpg" alt="Card image cap" class="img-fluid">
+            <div class="card-body">
+              <h3 class="card-title" > </h3>
+              <a (click)="countryzone(regions)"   class="btn btn-info" style="height: 20%; width: 40%"> {{regions}}</a>
+            </div>
+          </div>
+<br>
+<br>
+
+    </div>
+    
+  </div>
+  </div>
+
+<!-- button for single country display on the basis of region -->
+
+<div class="container" *ngIf = "countrynamedata == undefined && languagedetails == undefined && currencydetails== undefined">
+  <div class="row">
+    <div class="col-lg-4 col-md-12 col-sm-12" *ngFor = "let obj1 of countrydata">
+
+        <div class="card" style="width: 100%; " >
+            <img class="card-img-top " src="{{obj1.flag}}" alt="Card image cap" class="img-fluid">
+
+            <div class="card-body">
+            <h4 class="card-title" style="color:sienna" >CountryName: {{obj1.name}} </h4>
+           
+              <br>
+              <h5>Region:- {{obj1.region}}</h5>
+              <br>
+              <h5>Capital:- {{obj1.capital}}</h5>
+
+              <ul class="list-group">
+              <a (click)="countrynamedetail(obj1.name)"   class="btn btn-info">view details</a>
+              <li class="list-group-item"> </li>
+<a (click)="languagefilter(obj1.languages[0].iso639_1)"   class="btn btn-danger">Search by Language </a>
+<li class="list-group-item"></li>
+<a (click)="currencyfilter(obj1.currencies[0].code)"   class="btn btn-danger"> Search by currency </a>
+<li class="list-group-item"></li>
+       
+                </ul>
+                <br>
+
+
+            </div>
+
+          </div>
+          <br>
+
+
+
+
+
+
+    </div>
+
+  </div>
+
+</div>
+
+
+
+
+
+
+
+<!-- language filter data display -->
+
+<div class="container" *ngIf = "languagedetails != undefined">
+<div class="row">
+  <div class="col-lg-4 col-md-12 col-sm-12" *ngFor= "let obj3 of languagedetails">
+      <div class="card" style="width: 100%; " >
+          <div class="card-body">
+              <img class="card-img-top " src="{{obj3.flag}}" alt="Card image cap" class="img-fluid">
+
+            <h4 class="card-title" style="color:sienna" >CountryName: {{obj3.name}} </h4>
+            <br>
+            <h5>Region:  {{obj3.region}}</h5>
+            <br>
+            <h5>Capital:  {{obj3.capital}}</h5>
+
+           
+
+
+          </div>
+
+
+        </div>
+        <br>
+
+  </div>
+
+</div>
+</div>
+
+
+<!-- currencies data display -->
+
+<div class="container" *ngIf = "currencydetails != undefined">
+  <div class="row">
+<div class="col-lg-4 col-md-12 col-sm-12" *ngFor = "let obj4 of currencydetails">
+    <div class="card" style="width: 100%; " >
+        <div class="card-body">
+            <img class="card-img-top " src="{{obj4.flag}}" alt="Card image cap" class="img-fluid">
+
+          <h4 class="card-title" style="color:sienna" >CountryName: {{obj4.name}} </h4>
+          <br>
+          <h5>Region:  {{obj4.region}}</h5>
+          <br>
+          <h5>Capital:  {{obj4.capital}}</h5>
+
+         
+
+
+        </div>
+
+
+      </div>
+      <br>
+
+
+</div>
+  </div>
+
+</div>
+
+
+
+<!-- single country view -->
+
+<div class="container" *ngIf= "countrynamedata != undefined">
+  <div class="row">
+    <div class="col-sm-12 col-md-12 col-lg-12" *ngFor = "let obj2 of countrynamedata" >
+   <div>
+      <img src = "{{obj2.flag}}" class="img-fluid">
+      <br>
+      <ul class="list-group">
+          <li class="list-group-item" style="height: 10%; width: 100%;"><h3>Name: {{obj2.name}}</h3></li>
+          <li class="list-group-item" style="height: 10%; width: 100%;"><h4>NativeName: {{obj2.nativeName}}</h4></li>
+          <li class="list-group-item" style="height: 10%; width: 100%;"><h4>Region: {{obj2.region}}</h4></li>
+          <li class="list-group-item" style="height: 10%; width: 100%;"><h4>SubRegion: {{obj2.subregion}}</h4></li>
+          <li class="list-group-item" style="height: 10%; width: 100%;"><h4>Capital: {{obj2.capital}}</h4></li>
+          <li class="list-group-item" style="height: 10%; width: 100%;"><h4>Area: {{obj2.area}}</h4></li>
+          <li class="list-group-item" style="height: 10%; width: 100%;"><h4>Gini: {{obj2.gini}}</h4></li>
+        </ul>
+
+   </div>
+   <br>
+
+ 
+   
+
+    </div>
+
+  </div>
+
+</div>
+
+
+
+   <!-- button after displaying data -->
+        <div class="container" >
+             <div class="row">
+               <div class="col-12">
+                 <button  class="btn btn-primary" style="width: 30%;" (click)="backtohome()" *ngIf = "countrydata != undefined">Home</button>
+
+               </div>
+<br>
+             </div>
+        </div>
